@@ -15,8 +15,8 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           username: ${{secrets.SSH_USERNAME}}
         
-        script: |
-          cd github-action-test
-          git pull
-          docker-compose build
-          docker-compose up -d
+          script: |
+            cd github-action-test
+            git pull
+            docker-compose build
+            docker-compose up -d
