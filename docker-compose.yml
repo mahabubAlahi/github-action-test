@@ -1,0 +1,18 @@
+version: "3.7"
+
+networks:
+  github-test:
+
+services:
+  pnd_user_app:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    image: github-test:1.0
+    volumes:
+      - ./:/usr/share/nginx/html/
+    restart: always
+    ports:
+      - "3553:80"
+    networks:
+      - github-test
