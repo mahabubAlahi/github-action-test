@@ -7,20 +7,8 @@ on:
 jobs:
   deploy:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Repository checkout
-        uses: actions/checkout@v2
-      - name: Connects to VPS via SSH
-        uses: appleboy/ssh-action@v0.1.3
-        with:
-          host: ${{secrets.SSH_HOST}}
-          key: ${{secrets.SSH_KEY}}
-          username: ${{secrets.SSH_USERNAME}}
-        
-          script: |
-            cd github-action-test
-            git pull
-            docker-compose build
-            docker-compose up -d
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
